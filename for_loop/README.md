@@ -11,7 +11,7 @@
 |   5   |   mov   | DWORD PTR [rbp-0x4] |         0x0         | ベースポインタから4bit進めたところに0をセット（ループカウンタ）       |
 |   6   |   jmp   |  0x116f <main+38>   |                     | index10に移動                                                         |
 |   7   |   mov   |         eax         | DWORD PTR [rbp-0x4] | ベースポインタから4bit進めたところの値をeaxにコピー                   |
-|   8   |   add   | DWORD PTR [rbp-0x8] |         edx         | ベースポインタから8bit進めたところにeaxにコピー                       |
+|   8   |   add   | DWORD PTR [rbp-0x8] |         eax         | ベースポインタから8bit進めたところの値にeaxを加算                       |
 |   9   |   add   | DWORD PTR [rbp-0x4] |         0x1         | ベースポインタから4bit進めたところの値に1を加算してセット             |
 |  10   |   cmp   | DWORD PTR [rbp-0x4] |         0x9         | ベースポインタから4bit進めたところの値と9を比較                       |
 |  11   |   jle   |  0x1165 <main+28>   |                     | 上の比較の結果が、0x9より小さいか等しい場合はindex7に移動             |

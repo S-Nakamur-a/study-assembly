@@ -8,20 +8,20 @@ main関数
 | :---: | :---: | :-----------------: | :-----------------: | :--------------------------------------------------------------------- |
 |   1   | push  |         rbp         |                     | ベースポインタの値をスタックに退避。rspの値を減らす                    |
 |   2   |  mov  |         rbp         |         rsp         | スタックポインタをベースポインタとしてコピー                           |
-|   3   |  sub  |         rsp         |        0x10         | スタックを16bit確保                                                    |
-|   4   |  mov  | DWORD PTR [rbp-0xc] |         0xa         | ベースポインタから12bit進めたところに10をセット                        |
-|   5   |  mov  | DWORD PTR [rbp-0x8] |        0x14         | ベースポインタかた8bit進めたところに20をセット                         |
-|   6   |  mov  |         edx         | DWORD PTR [rbp-0x8] | ベースポインタから8bit進んだところにある値(10)をedxレジスタにコピー    |
-|   7   |  mov  |         eax         | DWORD PTR [rbp-0xc] | ベースポインタから12bit進んだところにある値(20)をeaxレジスタにコピー   |
+|   3   |  sub  |         rsp         |        0x10         | スタックを16バイト確保                                                    |
+|   4   |  mov  | DWORD PTR [rbp-0xc] |         0xa         | ベースポインタから12バイト進めたところに10をセット                        |
+|   5   |  mov  | DWORD PTR [rbp-0x8] |        0x14         | ベースポインタかた8バイト進めたところに20をセット                         |
+|   6   |  mov  |         edx         | DWORD PTR [rbp-0x8] | ベースポインタから8バイト進んだところにある値(10)をedxレジスタにコピー    |
+|   7   |  mov  |         eax         | DWORD PTR [rbp-0xc] | ベースポインタから12バイト進んだところにある値(20)をeaxレジスタにコピー   |
 |   8   |  mov  |         esi         |         edx         | edxの値(10)をesiにコピー                                               |
 |   9   |  mov  |         edi         |         eax         | eaxの値(20)をediにコピー                                               |
 |  10   | call  |       0x1149        |                     | add関数を呼んでいる                                                    |
-|  11   |  mov  | DWORD PTR [rbp-0x4] |         eax         | ベースポインタから4bit進んだところにeaxの値(add関数の返り値)をコピー   |
-|  12   |  mov  |         ecx         | DWORD PTR [rbp-0x4] | ベースポインタから4bit進んだところの値をecxにコピー(printf呼び出し用)  |
-|  13   |  mov  |         edx         | DWORD PTR [rbp-0x8] | ベースポインタから8bit進んだところの値をedxにコピー(printf呼び出し用)  |
-|  14   |  mov  |         eax         | DWORD PTR [rbp-0xc] | ベースポインタから12bit進んだところの値をeaxにコピー(printf呼び出し用) |
+|  11   |  mov  | DWORD PTR [rbp-0x4] |         eax         | ベースポインタから4バイト進んだところにeaxの値(add関数の返り値)をコピー   |
+|  12   |  mov  |         ecx         | DWORD PTR [rbp-0x4] | ベースポインタから4バイト進んだところの値をecxにコピー(printf呼び出し用)  |
+|  13   |  mov  |         edx         | DWORD PTR [rbp-0x8] | ベースポインタから8バイト進んだところの値をedxにコピー(printf呼び出し用)  |
+|  14   |  mov  |         eax         | DWORD PTR [rbp-0xc] | ベースポインタから12バイト進んだところの値をeaxにコピー(printf呼び出し用) |
 |  15   |  mov  |         esi         |         eax         | eaxの値をesiにコピー                                                   |
-|  16   |  lea  |         rdi         |     [rip+0xe65]     | プログラムカウンタを3685bit進めた先のアドレスをrdiにロード             |
+|  16   |  lea  |         rdi         |     [rip+0xe65]     | プログラムカウンタを3685バイト進めた先のアドレスをrdiにロード             |
 |  17   |  mov  |         eax         |         0x0         | eaxに0を代入                                                           |
 |  18   | call  |       0x1050        |                     | printf関数を呼んでいる                                                 |
 |  19   |  mov  |         eax         |         0x0         | eaxに0を代入                                                           |
@@ -35,10 +35,10 @@ add関数
 |   1   | endbr64 |                     |                     | このオペランドがついている場所にしか動的にジャンプできなくなるらしい? |
 |   2   |  push   |         rbp         |                     | ベースポインタの値をスタックに退避。rspの値を減らす                   |
 |   3   |   mov   |         rbp         |         rsp         | スタックポインタをベースポインタとしてコピー                          |
-|   4   |   mov   | DWORD PTR [rbp-0x4] |         edi         | ベースポインタから4bit進めたところにediの値(20)をコピー               |
-|   5   |   mov   | DWORD PTR [rbp-0x8] |         esi         | ベースポインタから8bit進めたところにesiの値(10)をコピー               |
-|   6   |   mov   |         edx         | DWORD PTR [rbp-0x4] | ベースポインタから4bit進めたところの値をedxにコピー                   |
-|   7   |   mov   |         eax         | DWORD PTR [rbp-0x8] | ベースポインタから8bit進めたところの値をeaxにコピー                   |
+|   4   |   mov   | DWORD PTR [rbp-0x4] |         edi         | ベースポインタから4バイト進めたところにediの値(20)をコピー               |
+|   5   |   mov   | DWORD PTR [rbp-0x8] |         esi         | ベースポインタから8バイト進めたところにesiの値(10)をコピー               |
+|   6   |   mov   |         edx         | DWORD PTR [rbp-0x4] | ベースポインタから4バイト進めたところの値をedxにコピー                   |
+|   7   |   mov   |         eax         | DWORD PTR [rbp-0x8] | ベースポインタから8バイト進めたところの値をeaxにコピー                   |
 |   8   |   add   |         eax         |         edx         | eaxにeax+edxの値を計算してセット                                      |
 |   9   |   pop   |         rbp         |                     | ベースポインタの値をスタックから戻す                                  |
 |  10   |   ret   |                     |                     | 呼び出し元であるmain関数に戻る                                        |
